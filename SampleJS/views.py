@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 
-from forms import RegistrationForm
+from forms import RegistrationForm, StudentForm
 
 
 # class Promise:
@@ -41,14 +41,41 @@ def index(request):
 
 
 def register(request):
-    form = RegistrationForm(request.POST or None)
-    if form.is_valid():
-        print('Success!!!')
-        return JsonResponse({
-            'status': 'ok'
-        })
+    common_form = RegistrationForm(request.POST or None)
+    result = {
+        'status': 'ok',
+        'message': {
+        }
+    }
+    if not common_form.is_valid():
+        result['status'] = 'error'
+        result['message']['common'] = common_form.errors
 
-    return JsonResponse({
-        'status': 'error',
-        'message': form.errors,
-    })
+    if 'role' in request.POST:
+        if request.POST['role'] == 'student':
+            student_form = StudentForm(request.POST or None)
+            if not student_form.is_valid():
+                result['status'] = 'error'
+                result['message']['student'] = student_form.errors
+
+        if request.POST['role'] == 'teacher':
+            # ....
+            teacher_result = {}
+            if teacher_result:
+                result['message']['teacher'] = teacher_result
+
+    # {
+    #     'message': {
+    #         'common': {
+    #             'username': ['This field is required'],
+    #             'password': ['This field is required'],
+    #         },
+    #         'student': {
+    #             'age': ['Value is too small']
+    #         },
+    #         'teacher': {
+    #
+    #         }
+    #     }
+    # }
+    return JsonResponse(result)

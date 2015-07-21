@@ -6,3 +6,6 @@ class RegistrationForm(forms.Form):
     email = fields.EmailField()
     password = fields.CharField(min_length=6, max_length=20)
 
+
+class StudentForm(forms.Form):
+    age = fields.IntegerField(min_value=6, max_value=20)

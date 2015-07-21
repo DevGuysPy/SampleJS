@@ -8,38 +8,42 @@
 <body>
 <form>
     {% csrf_token %}
-    <div class="radio">
-        <label>
-            <input class="choice" type="radio" name="role" value="student">
-            Student
-        </label>
-    </div>
-    <div class="radio">
-        <label>
-            <input class="choice" type="radio" name="role" value="teacher">
-            Teacher
-        </label>
-    </div>
-    <div class="radio">
-        <label>
-            <input class="choice" type="radio" name="role" value="other">
-            Other
-        </label>
-    </div>
-    <div class="form-group">
-        <input type="text" name="username" placeholder="Username">
-        <div class="error username"></div>
-    </div>
-    <div class="form-group">
-        <input type="email" name="email" placeholder="Email">
-        <div class="error email"></div>
-    </div>
-    <div class="form-group">
-        <input type="password" name="password" placeholder="Password">
-        <div class="error password"></div>
+    <div class="common-form">
+        <div class="radio">
+            <label>
+                <input class="choice" type="radio" name="role" value="student">
+                Student
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input class="choice" type="radio" name="role" value="teacher">
+                Teacher
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input class="choice" type="radio" name="role" value="other">
+                Other
+            </label>
+        </div>
+        <div class="form-group">
+            <input type="text" name="username" placeholder="Username">
+            <div class="error username"></div>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" placeholder="Email">
+            <div class="error email"></div>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password" placeholder="Password">
+            <div class="error password"></div>
+        </div>
     </div>
     <div class="user-form student-form" style="display: none;">
-        <h1>Student</h1>
+        <h2>Student</h2>
+        <input type="text" name="age">
+        <div class="error age"></div>
     </div>
     <div class="user-form teacher-form" style="display: none;">
         <h1>Teacher</h1>

@@ -36,10 +36,13 @@ $(document).ready(function(){
             if (response.status == 'ok') {
                 alert('Success!');
             } else {
-                debugger;
-                for(var key in response.message) {
-                    var errorDiv = $(".error." + key);
-                    errorDiv.html(response.message[key][0]);
+                for(var category in response.message) {
+                    var categoryDiv = $('.' + category + '-form');
+                    var categoryFields = response.message[category];
+                    for(var fieldName in categoryFields) {
+                        var errorDiv = categoryDiv.find(".error." + fieldName);
+                        errorDiv.html(categoryFields[fieldName][0]);
+                    }
                 }
             }
         }).fail(function(response){
